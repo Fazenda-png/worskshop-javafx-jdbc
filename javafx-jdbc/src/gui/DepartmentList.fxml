@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DepartmentListController">
 	<children>
 		<Label text="Registro de Departamento">
 			<font>
@@ -19,16 +19,16 @@
 				<Insets left="5.0" top="5.0" />
 			</padding>
 		</Label>
-		<ToolBar prefHeight="40.0" prefWidth="200.0">
-			<items>
-				<Button fx:id="btNew" mnemonicParsing="false" text="Novo" />
-			</items>
-		</ToolBar>
-		<TableView prefHeight="200.0" prefWidth="200.0">
-			<columns>
-				<TableColumn prefWidth="36.0" text="Id" />
-				<TableColumn prefWidth="218.0" text="Name" />
-			</columns>
-		</TableView>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button fx:id="btnNew" mnemonicParsing="false" onAction="#onBtnNewAction" text="Novo" />
+        </items>
+      </ToolBar>
+      <TableView fx:id="tableViewDepartment" prefHeight="337.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="tableColumId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tableColumName" prefWidth="75.0" text="NAME" />
+        </columns>
+      </TableView>
 	</children>
 </VBox>
