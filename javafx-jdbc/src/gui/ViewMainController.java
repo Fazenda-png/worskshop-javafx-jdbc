@@ -16,7 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import model.services.DeparmentServices;
+import model.services.DepartmentServices;
 
 public class ViewMainController implements Initializable {
 
@@ -35,7 +35,7 @@ public class ViewMainController implements Initializable {
 	@FXML
 	public void onMenuItemDepartmentAction() {
 		loadView("/gui/DepartmentList.fxml", (DepartmentListController controller) -> {
-			controller.setDepartmentService(new DeparmentServices());
+			controller.setDepartmentService(new DepartmentServices());
 			controller.updateTableView();
 		});
 	}
@@ -46,7 +46,7 @@ public class ViewMainController implements Initializable {
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL url, ResourceBundle rb) {
 
 	}
 
