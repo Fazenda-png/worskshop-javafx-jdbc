@@ -1,9 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -105,7 +107,23 @@ public class SellerFormController implements Initializable {
 			exception.addError("name", "Field can't be empty");
 		}
 		obj.setName(textName.getText());
+		if (textEmail.getText() == null || textEmail.getText().trim().equals("")) {
+			exception.addError("email", "Field can't be empty");
+		}
+		obj.setEmail(textEmail.getText());
 
+		if (dpBirthDate.getValue() == null) {
+			exception.addError("birthDate", "Field can't be empty");
+		}
+		Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()));
+		obj.setBirthDate(Date.from(instant));
+
+		if (textBaseSalary.getText() == null || textBaseSalary.getText().trim().equals("")) {
+			exception.addError("baseSalary", "Field can't be empty");
+		}
+		obj.setBaseSalary(utils.tryParseToDouble(textBaseSalary.getText()));
+
+		obj.setDepartment(comboBoxDepartment.getValue());
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
@@ -162,11 +180,28 @@ public class SellerFormController implements Initializable {
 
 		if (fields.contains("name")) {
 			errorTextName.setText(errors.get("name"));
+		} else {
+			errorTextName.setText("");
+		}
+		if (fields.contains("email")) {
+			errorTextEmail.setText(errors.get("email"));
+		} else {
+			errorTextEmail.setText("");
+		}
+		if (fields.contains("baseSalary")) {
+			errorTextBaseSalary.setText(errors.get("baseSalary"));
+		} else {
+			errorTextBaseSalary.setText("");
+		}
+		if (fields.contains("birthDate")) {
+			errorTextBirthDate.setText(errors.get("birthDate"));
+		} else {
+			errorTextBirthDate.setText("");
 		}
 	}
 
 	public void loadAssociateObjects() {
-		if(departmentService == null) {
+		if (departmentService == null) {
 			throw new IllegalStateException("DepartmentServices was null");
 		}
 		List<Department> list = departmentService.findAll();
